@@ -37,6 +37,7 @@ func (t *Task) InsertTask(task Task) error {
 	collection := client.Database("tasks").Collection("tasks")
 
 	_, err := collection.InsertOne(context.TODO(), Task{
+		ID:          task.ID,
 		UserID:      task.UserID,
 		Title:       task.Title,
 		Description: task.Description,

@@ -23,10 +23,10 @@ func (app *Config) routes() http.Handler {
 
 	mux.Use(middleware.Heartbeat("/ping"))
 
-	mux.Route("/api", func(r chi.Router) {
+	mux.Route("/api/tasks-service", func(r chi.Router) {
 		r.Post("/create_task", authenticate(app.AddTaskHandler))
-		r.Delete("/delete_task", authenticate(app.RemoveTaskHandler))
-		r.Post("/update_task", authenticate(app.UpdateTaskHandler))
+		r.Delete("/delete_task/{id}", authenticate(app.RemoveTaskHandler))
+		r.Post("/update_task/{id}", authenticate(app.UpdateTaskHandler))
 		r.Get("/get_tasks", authenticate(app.GetAllTasksHandler))
 	})
 
