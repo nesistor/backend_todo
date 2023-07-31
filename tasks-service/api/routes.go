@@ -23,10 +23,12 @@ func (app *Config) routes() http.Handler {
 
 	mux.Use(middleware.Heartbeat("/ping"))
 
-	mux.Post("/create_task", authenticate(app.AddTaskHandler))
-	mux.Delete("/delete_task", authenticate(app.RemoveTaskHandler))
-	mux.Post("/update_task", authenticate(app.UpdateTaskHandler))
-	mux.Get("/get_tasks", authenticate(app.GetAllTasksHandler))
+	mux.Route("/api", func(r chi.Router) {
+		r.Post("/create_task", authenticate(app.AddTaskHandler))
+		r.Delete("/delete_task", authenticate(app.RemoveTaskHandler))
+		r.Post("/update_task", authenticate(app.UpdateTaskHandler))
+		r.Get("/get_tasks", authenticate(app.GetAllTasksHandler))
+	})
 
 	return mux
 }
