@@ -16,11 +16,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/nesistor/backend_todo/tasks-service/data"
+	"github.com/nesistor/backend_todo/task-service/data"
 )
 
 const (
-	webPort  = "8080"
+	webPort  = "80"
 	mongoURL = "mongodb://mongo:27017"
 )
 

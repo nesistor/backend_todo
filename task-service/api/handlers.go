@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/nesistor/backend_todo/tasks-service/data"
+	"github.com/nesistor/backend_todo/task-service/data"
 )
 
 type JSONPayload struct {
