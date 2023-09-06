@@ -25,10 +25,12 @@ type Models struct {
 }
 
 type Task struct {
-	ID          string    `bson:"_id,omitempty" json:"id,omitempty"`
+	ID          string    `bson:"_id" json:"id"`
 	UserID      string    `bson:"user_id" json:"user_id"`
-	Title       string    `bson:"name" json:"name"`
-	Description string    `bson:"data" json:"data"`
+	Title       string    `bson:"title,omitempty" json:"title,omitempty"`
+	Description string    `bson:"description,omitempty" json:"description,omitempty"`
+	Insuccess   bool      `bson:"success,omitempty" json:"success"`
+	Date        string    `bson:"date" json:"date"`
 	CreatedAt   time.Time `bson:"created_at" json:"created_at"`
 	UpdatedAt   time.Time `bson:"updated_at" json:"updated_at"`
 }
@@ -41,6 +43,8 @@ func (t *Task) InsertTask(task Task) error {
 		UserID:      task.UserID,
 		Title:       task.Title,
 		Description: task.Description,
+		Date:        task.Date,
+		Insuccess:   task.Insuccess,
 		CreatedAt:   time.Now(),
 		UpdatedAt:   time.Now(),
 	})

@@ -12,3 +12,14 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+  
+  gpt4-service:
+    build: 
+      context: ./../gpt4-service
+      dockerfile: ./../gpt4-service/gpt-service.dockerfile
+    restart: always
+    ports:
+      - "8080:80"
+    deploy:
+      mode: replicated:
+      replicas: 1

@@ -11,6 +11,7 @@ type JSONPayload struct {
 	TaskID      string `json:"task_id"`
 	Title       string `json:"title,omitempty"`
 	Description string `json:"description,omitempty"`
+	Insuccess   bool   `json:"success,omitempty"`
 }
 
 var tasks = make(map[string]JSONPayload)
@@ -27,6 +28,7 @@ func (app *Config) AddTaskHandler(w http.ResponseWriter, r *http.Request) {
 		ID:          requestPayload.TaskID,
 		Title:       requestPayload.Title,
 		Description: requestPayload.Description,
+		Insuccess:   requestPayload.Insuccess,
 	}
 
 	err := app.Models.Task.InsertTask(event)

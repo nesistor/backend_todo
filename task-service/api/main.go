@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	webPort  = "80"
+	webPort  = "8080"
 	mongoURL = "mongodb://mongo:27017"
 )
 
@@ -60,7 +60,7 @@ func main() {
 
 	credentialsFilePath := os.Getenv("FIREBASE_CREDENTIALS")
 	if credentialsFilePath == "" {
-		log.Fatal("FIREBASECREDENTIALS environment variable not set.")
+		log.Fatal("FIREBASE_CREDENTIALS environment variable not set.")
 	}
 
 	opt := option.WithCredentialsFile(credentialsFilePath)
@@ -83,6 +83,7 @@ func main() {
 	}
 
 	err = srv.ListenAndServe()
+	fmt.Println(err)
 	if err != nil {
 		log.Panic()
 	}
