@@ -1,35 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"github.com/dunglas/mercure"
-	"github.com/go-chi/chi"
-	"net/http"
-)
-
-func main() {
-	// Tworzymy router chi
-	r := chi.NewRouter()
-
-	// Inicjalizujemy serwer Mercure z konfiguracją
-	mercureServer := mercure.NewServer(mercure.Config{
-		JWTKey: []byte("super-secure-key"), // Klucz JWT do autoryzacji
-	})
-
-	// Endpoint Mercure do wysyłania wiadomości
-	r.Post("/publish", publishHandler(mercureServer))
-
-	// Endpoint Mercure do subskrybowania kanału
-	r.Get("/subscribe", subscribeHandler(mercureServer))
-
-	// Uruchamiamy serwer na porcie 8080
-	fmt.Println("Serwer jest uruchomiony na porcie 8080...")
-	err := http.ListenAndServe(":8080", r)
-	if err != nil {
-		fmt.Println("Błąd podczas uruchamiania serwera:", err)
-	}
-}
-
 func publishHandler(mercureServer *mercure.Server) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Tutaj możesz obsłużyć żądanie POST do publikacji wiadomości w serwisie Mercure.

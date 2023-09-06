@@ -23,3 +23,14 @@ services:
     deploy:
       mode: replicated:
       replicas: 1
+  
+  chat-service:
+    build:
+      context: ./../../chat-service
+      dockerfile: ./../../chat-service/chat-service.dockerfile
+    restart: always
+    ports:
+      - "8080:80"
+    deploy:
+      mode: replicated
+      replicas: 1

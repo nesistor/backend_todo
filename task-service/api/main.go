@@ -16,7 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/nesistor/backend_todo/task-service/data"
+	"task-service/data"
 )
 
 const (
